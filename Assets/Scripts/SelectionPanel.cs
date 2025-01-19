@@ -4,9 +4,11 @@ using UnityEngine;
 public class SelectionPanel : MonoBehaviour
 {
     [SerializeField] private List<ItemData> _itemsData;
-    [SerializeField] private Transform _objectPlacer;
+    [SerializeField] private ObjectPlacer _objectPlacer;
     [SerializeField] private ItemView _itemTemplate;
     [SerializeField] private Transform _container;
+    [SerializeField] private UIColorPanel _colorPanel;
+    [SerializeField] private UIAnimationPanel _animationPanel;
 
     private void Start()
     {
@@ -18,17 +20,23 @@ public class SelectionPanel : MonoBehaviour
 
     private void AddItem(ItemData itemData)
     {
+        ItemData item = itemData;
         ItemView itemView = Instantiate(_itemTemplate, _container);
-        itemView.SetView(itemData);
+        itemView.SetView(item);
         ItemButton button = itemView.GetComponent<ItemButton>();
-        button.Init(itemData);
-        button.Click += OnButtonClick;  
+        button.Init(item);
+        button.Click += OnButtonClick;
         button.ButtonDisabled += OnButtonDisabled;
     }
 
     private void OnButtonClick(ItemData itemData)
     {
-
+        ItemData item = itemData;
+        _objectPlacer.SetInstalledObject(item, out GameObject installedObject);
+        ModelView modelView = installedObject.GetComponent<ModelView>();
+        ModelAnimations modelAnimations = installedObject.GetComponent<ModelAnimations>();
+        _colorPanel.Init(modelView);
+        _animationPanel.Init(modelAnimations);
     }
 
     private void OnButtonDisabled(ItemButton itemButton)

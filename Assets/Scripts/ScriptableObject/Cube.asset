@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378fb4eec0f59ac4c95c0d5b227aa85e, type: 3}
-  m_Name: SimulationEnvironmentAssetsManager
+  m_Script: {fileID: 11500000, guid: d5ff51b7939fb9847b9c694056a1adf4, type: 3}
+  m_Name: Cube
   m_EditorClassIdentifier: 
-  m_EnvironmentPrefabPaths: []
-  m_FallbackAtEndOfList: 0
+  _preview: {fileID: 0}
+  _label: Cube
+  _prefab: {fileID: 7749186168953831410, guid: e1e8830dd5717cd449afa313de17f6da, type: 3}
